@@ -1,0 +1,38 @@
+<html>
+<head>
+<script>
+  var trans = function(flag) {
+    var input_text = document.getElementById('input_text');
+    var output_text = document.getElementById('output_text');
+
+    // https://qiita.com/weal/items/1a2af81138cd8f49937d
+    var Base64 = {
+      encode: function(str) {
+          return btoa(unescape(encodeURIComponent(str)));
+      },
+      decode: function(str) {
+          return decodeURIComponent(escape(atob(str)));
+      }
+    };
+    if (flag == 'encode') {
+      output_text.value = Base64.encode(input_text.value);
+    } else if (flag == 'decode') {
+      output_text.value = Base64.decode(input_text.value);
+    }
+  }
+</script>
+</head>
+<body>
+<div id="app">
+  <textarea id='input_text' rows="20" cols="40"></textarea>
+  <textarea id='output_text'rows="20" cols="40"></textarea>
+  <br>
+  <button id='execute' onclick="trans('encode')">
+    BASE64 Encode
+  </button>
+  <br>
+  <button id='execute' onclick="trans('decode')">
+    BASE64 Decode
+  </button>
+</div>
+</body>
